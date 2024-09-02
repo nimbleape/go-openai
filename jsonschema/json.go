@@ -22,18 +22,18 @@ const (
 // It is fairly limited, and you may have better luck using a third-party library.
 type Definition struct {
 	// Type specifies the data type of the schema.
-	Type DataType `json:"type,omitempty"`
+	Type DataType `json:"type,omitempty" yaml:"type,omitempty"`
 	// Description is the description of the schema.
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 	// Enum is used to restrict a value to a fixed set of values. It must be an array with at least
 	// one element, where each element is unique. You will probably only use this with strings.
-	Enum []string `json:"enum,omitempty"`
+	Enum []string `json:"enum,omitempty" yaml:"enum,omitempty"`
 	// Properties describes the properties of an object, if the schema type is Object.
-	Properties map[string]Definition `json:"properties"`
+	Properties map[string]Definition `json:"properties,omitempty yaml:"properties,omitempty""`
 	// Required specifies which properties are required, if the schema type is Object.
-	Required []string `json:"required,omitempty"`
+	Required []string `json:"required,omitempty" yaml:"required,omitempty"`
 	// Items specifies which data type an array contains, if the schema type is Array.
-	Items *Definition `json:"items,omitempty"`
+	Items *Definition `json:"items,omitempty" yaml:"items,omitempty"`
 }
 
 func (d Definition) MarshalJSON() ([]byte, error) {
